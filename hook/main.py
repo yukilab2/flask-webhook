@@ -9,7 +9,8 @@ app = Flask(__name__)
 def kicked():
     command = 'git pull'
     args = shlex.split(command)
-    subprocess.call(args, shell=True)
+    ret = subprocess.check_output(args, shell=True)
+    print('\n', ret.decode())
 
 
 @app.route('/post', methods=['POST'])
