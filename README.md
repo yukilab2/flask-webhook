@@ -1,5 +1,5 @@
 # flask-webhook
-web hook server on Flask which recieves POST request
+web hook server on Flask which receives POST request
 
 # Prerequisite server environment
 
@@ -10,15 +10,14 @@ sudo apt install git
 sudo apt-get install python3-venv
 cd ~
 git clone https://github.com/yukilab2/flask-webhook.git
+
 cd flask-webhook
 python3 -m venv venv
 source ./venv/bin/activate
 (venv) pip install -r requirements.txt
-(venv) pip3 install gunicorn
-(venv) pytest
 
 # gunicorn and venv setup test
-(venv) gunicorn --chdir <work_directory> --user <user> --group <group> -w 1 hook.main:app
+(venv) gunicorn --bind '0.0.0.0:<server_port>' --env FLASK_POST_KEY=<flask_post_key> --chdir <work_directory> --user <user> --group <group> -w 1 hook.main:app
 
 
 # environment variable FLASK_POST_KEY shall be set properly
